@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="groovy" pageWidth="1670" pageHeight="842" orientation="Landscape" columnWidth="1630" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be696906-5d52-41d5-a43f-3fe1655c517e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="976"/>
+	<property name="ireport.y" value="9"/>
+	<queryString>
+		<![CDATA[SELECT
+     tb_city.`str_name_city` AS Cidade,
+     tb_payments.`int_month` AS Mes,
+     tb_payments.`int_year` AS Ano,
+     tb_payments.`db_value` AS Valor,
+     tb_files.`str_name_file` AS Nome_Arquivo,
+     tb_source.`str_goal` AS Origem,
+     tb_beneficiaries.`str_name_person` AS Beneficiario,
+     tb_functions.`str_name_function` AS Funcao,
+     tb_action.`str_name_action` AS Acao,
+     tb_program.`str_name_program` AS Programa,
+     tb_subfunctions.`str_name_subfunction` AS SubFuncao
+FROM
+     `tb_city` tb_city INNER JOIN `tb_payments` tb_payments ON tb_city.`id_city` = tb_payments.`tb_city_id_city`
+     INNER JOIN `tb_files` tb_files ON tb_payments.`tb_files_id_file` = tb_files.`id_file`
+     INNER JOIN `tb_source` tb_source ON tb_payments.`tb_source_id_source` = tb_source.`id_source`
+     INNER JOIN `tb_beneficiaries` tb_beneficiaries ON tb_payments.`tb_beneficiaries_id_beneficiaries` = tb_beneficiaries.`id_beneficiaries`
+     INNER JOIN `tb_functions` tb_functions ON tb_payments.`tb_functions_id_function` = tb_functions.`id_function`
+     INNER JOIN `tb_action` tb_action ON tb_payments.`tb_action_id_action` = tb_action.`id_action`
+     INNER JOIN `tb_program` tb_program ON tb_payments.`tb_program_id_program` = tb_program.`id_program`
+     INNER JOIN `tb_subfunctions` tb_subfunctions ON tb_payments.`tb_subfunctions_id_subfunction` = tb_subfunctions.`id_subfunction`
+ORDER BY
+     str_name_person ASC]]>
+	</queryString>
+	<field name="Cidade" class="java.lang.String"/>
+	<field name="Mes" class="java.lang.Integer"/>
+	<field name="Ano" class="java.lang.Integer"/>
+	<field name="Valor" class="java.lang.Double"/>
+	<field name="Nome_Arquivo" class="java.lang.String"/>
+	<field name="Origem" class="java.lang.String"/>
+	<field name="Beneficiario" class="java.lang.String"/>
+	<field name="Funcao" class="java.lang.String"/>
+	<field name="Acao" class="java.lang.String"/>
+	<field name="Programa" class="java.lang.String"/>
+	<field name="SubFuncao" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="1075" y="0" width="115" height="72" uuid="f040a3b0-a981-40e6-bd4d-1b41d96fc317"/>
+				<imageExpression><![CDATA["D:\\xampp\\htdocs\\EconomicAnalyzer\\App\\Templates\\Default\\img\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="574" y="12" width="483" height="55" uuid="39cc7782-e42d-4004-bb2e-81f12d14f9b3"/>
+				<textElement>
+					<font size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de beneficiários]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="7" width="100" height="20" uuid="e6b285c9-f2f6-4793-b713-8028873f1ef8"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="179" y="0" width="56" height="31" uuid="63a1732a-60e1-4fbb-bc60-a774a26dbfe7"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="139" height="31" uuid="00dbb628-0c56-4215-9232-943ea03de0f8"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="0" width="63" height="31" uuid="4838cdb2-75e9-464a-87ed-28a737c1cdba"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ano]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="0" width="95" height="31" uuid="c9d6a329-f6fc-4e6d-b959-8821ab1e1782"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Arquivo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="65" height="31" uuid="13d5b7b1-d2d0-44ba-8770-05dec2c159e6"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="630" y="0" width="95" height="31" uuid="71f508b0-a1b6-478f-b42b-29a8f729cb46"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Origem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="854" y="0" width="152" height="31" uuid="96239ab5-35ac-45db-a9e5-d014f3c30350"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Beneficiário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1114" y="0" width="100" height="31" uuid="79954ce0-7285-475a-916e-47bfcf7747b9"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Função]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1226" y="0" width="100" height="31" uuid="75cc9a06-da32-4553-a198-a214d46c8b64"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1341" y="0" width="125" height="31" uuid="e5a4370b-dafc-4807-a085-2eca4d4d5759"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Programa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1477" y="0" width="146" height="31" uuid="41b20c86-aed9-483a-a9cf-18f4d8962bd2"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sub-Função]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="17" width="153" height="20" uuid="a984719e-f1f2-46dc-914a-9688b39b9436"/>
+				<textFieldExpression><![CDATA[$F{Cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="17" width="61" height="20" uuid="a6735cc9-fe41-49c6-b8d3-b7074ff8232e"/>
+				<textFieldExpression><![CDATA[$F{Mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="17" width="63" height="20" uuid="01d6fdf6-d4de-476a-ad42-a8dd68a6a0db"/>
+				<textFieldExpression><![CDATA[$F{Ano}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="17" width="60" height="20" uuid="d9e1c4c1-ff56-4479-9789-161fd552c627"/>
+				<textFieldExpression><![CDATA[$F{Valor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="387" y="17" width="232" height="20" uuid="bf011c0b-4c75-4b68-810b-e991d8dae2b4"/>
+				<textFieldExpression><![CDATA[$F{Nome_Arquivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="630" y="17" width="215" height="20" uuid="88e75453-034c-499d-a5c4-576d0fbbae8f"/>
+				<textFieldExpression><![CDATA[$F{Origem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="854" y="17" width="243" height="20" uuid="d8707adc-9dc5-4cf1-b214-bcea6f0bb070"/>
+				<textFieldExpression><![CDATA[$F{Beneficiario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1114" y="17" width="100" height="20" uuid="87da536c-b007-4e18-9c57-447dfa791253"/>
+				<textFieldExpression><![CDATA[$F{Funcao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1226" y="17" width="100" height="20" uuid="f2e4aa2e-dc38-4fa8-9113-98c1575d1897"/>
+				<textFieldExpression><![CDATA[$F{Acao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1341" y="17" width="100" height="20" uuid="0445282e-88c2-46a4-bc42-810c6d2f1932"/>
+				<textFieldExpression><![CDATA[$F{Programa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1477" y="17" width="100" height="20" uuid="85a79cbf-eb3a-4c1e-bdbf-6c28406c9c00"/>
+				<textFieldExpression><![CDATA[$F{SubFuncao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="1487" y="34" width="80" height="20" uuid="49d8c655-f6c9-4389-b9d7-31ae1c0958bf"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="1567" y="34" width="40" height="20" uuid="3144dfa7-e23c-4b0a-829c-15c59fcc369e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

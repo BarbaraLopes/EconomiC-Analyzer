@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report7" language="groovy" pageWidth="640" pageHeight="842" columnWidth="600" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be696906-5d52-41d5-a43f-3fe1655c517e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+    tb_state.`str_name` AS Estado,
+    SUM(tb_payments.`db_value`) AS Valor_Total
+FROM
+    db_eca.`tb_city` tb_city
+        INNER JOIN
+    db_eca.`tb_payments` tb_payments ON db_eca.tb_city.`id_city` = db_eca.tb_payments.`tb_city_id_city`
+        INNER JOIN
+    db_eca.`tb_state` tb_state ON db_eca.tb_city.`tb_state_id_state` = db_eca.tb_state.`id_state`
+GROUP BY tb_state.`str_name`
+ORDER BY tb_state.`str_name` ASC;]]>
+	</queryString>
+	<field name="Estado" class="java.lang.String"/>
+	<field name="Valor_Total" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="483" y="7" width="115" height="72" uuid="f040a3b0-a981-40e6-bd4d-1b41d96fc317"/>
+				<imageExpression><![CDATA["D:\\xampp\\htdocs\\EconomicAnalyzer\\App\\Templates\\Default\\img\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="24" width="483" height="55" uuid="39cc7782-e42d-4004-bb2e-81f12d14f9b3"/>
+				<textElement>
+					<font size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório pag. total estado]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="7" width="100" height="20" uuid="e6b285c9-f2f6-4793-b713-8028873f1ef8"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="218" y="0" width="142" height="31" uuid="4e135680-7fcb-4b33-b142-112630179700"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="149" height="31" uuid="4838cdb2-75e9-464a-87ed-28a737c1cdba"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="218" y="17" width="100" height="20" uuid="2f3d061d-23b9-41c5-aafe-6dee2069f817"/>
+				<textFieldExpression><![CDATA[$F{Valor_Total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="17" width="100" height="20" uuid="360887ef-c5cc-43ae-a0ac-577f912c8d32"/>
+				<textFieldExpression><![CDATA[$F{Estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="420" y="34" width="80" height="20" uuid="49d8c655-f6c9-4389-b9d7-31ae1c0958bf"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="500" y="34" width="40" height="20" uuid="3144dfa7-e23c-4b0a-829c-15c59fcc369e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

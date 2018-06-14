@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report5" language="groovy" pageWidth="640" pageHeight="842" columnWidth="600" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be696906-5d52-41d5-a43f-3fe1655c517e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+    tb_beneficiaries.`str_name_person` AS Beneficiario,
+    count(tb_payments.`tb_beneficiaries_id_beneficiaries`) as Qt_beneficio_mes,
+    tb_payments.`int_month` AS mes,
+    sum(tb_payments.`db_value`) AS Valor
+FROM
+    db_eca.`tb_beneficiaries` tb_beneficiaries
+        INNER JOIN
+    db_eca.`tb_payments` tb_payments
+    ON tb_beneficiaries.`id_beneficiaries` = tb_payments.`tb_beneficiaries_id_beneficiaries`
+GROUP BY tb_payments.`tb_beneficiaries_id_beneficiaries`, tb_payments.`int_month`;]]>
+	</queryString>
+	<field name="Beneficiario" class="java.lang.String"/>
+	<field name="Qt_beneficio_mes" class="java.lang.Long"/>
+	<field name="mes" class="java.lang.Integer"/>
+	<field name="Valor" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="483" y="7" width="115" height="72" uuid="f040a3b0-a981-40e6-bd4d-1b41d96fc317"/>
+				<imageExpression><![CDATA["D:\\xampp\\htdocs\\EconomicAnalyzer\\App\\Templates\\Default\\img\\logo.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="24" width="483" height="55" uuid="39cc7782-e42d-4004-bb2e-81f12d14f9b3"/>
+				<textElement>
+					<font size="36" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório pag. total cidade]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="7" width="100" height="20" uuid="e6b285c9-f2f6-4793-b713-8028873f1ef8"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="216" y="0" width="215" height="31" uuid="63a1732a-60e1-4fbb-bc60-a774a26dbfe7"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qt. beneficio mês]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="0" width="55" height="31" uuid="c9d6a329-f6fc-4e6d-b959-8821ab1e1782"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mês]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="194" height="31" uuid="4838cdb2-75e9-464a-87ed-28a737c1cdba"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Beneficiário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="532" y="0" width="66" height="31" uuid="4e135680-7fcb-4b33-b142-112630179700"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="17" width="194" height="20" uuid="01b24d68-af01-4be7-bb8b-cb616ac6d456"/>
+				<textFieldExpression><![CDATA[$F{Beneficiario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="216" y="17" width="100" height="20" uuid="d3fbffad-adea-4056-9d16-aeaba464718b"/>
+				<textFieldExpression><![CDATA[$F{Qt_beneficio_mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="461" y="17" width="50" height="20" uuid="55fc134a-bf68-4703-a28e-86780553b2f2"/>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="532" y="17" width="60" height="20" uuid="e56878c6-4e96-4271-a5fe-0d04eac73fd9"/>
+				<textFieldExpression><![CDATA[$F{Valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="420" y="34" width="80" height="20" uuid="49d8c655-f6c9-4389-b9d7-31ae1c0958bf"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="500" y="34" width="40" height="20" uuid="3144dfa7-e23c-4b0a-829c-15c59fcc369e"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
